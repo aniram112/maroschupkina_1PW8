@@ -17,9 +17,7 @@ class MoviesViewController: UIViewController {
         DispatchQueue.global(qos: .background).async { [weak self] in
             self?.loadMovies()
         }
-        
-        
-        // Do any additional setup after loading the view.
+
     }
     
     private func configureUI() {
