@@ -18,10 +18,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = MoviesViewController()
-        window.backgroundColor = .cyan
+        let tabBarController = UITabBarController()
+        let viewControllers = [
+            MoviesViewController(),
+            SearchViewController()
+        ]
+        tabBarController.setViewControllers(viewControllers, animated: false)
+        let nav = UINavigationController(rootViewController: tabBarController)
+        window.rootViewController = nav
         self.window = window
         window.makeKeyAndVisible()
+        for i in 0..<viewControllers.count {
+            viewControllers[i].title = "\(i+1)"
+        }
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

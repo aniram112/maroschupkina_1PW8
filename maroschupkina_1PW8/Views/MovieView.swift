@@ -44,6 +44,7 @@ class MovieView: UITableViewCell {
             title.trailingAnchor.constraint(equalTo: trailingAnchor),
             title.heightAnchor.constraint(equalToConstant: 20),
         ])
+        
         title.textAlignment = .center
         
     }

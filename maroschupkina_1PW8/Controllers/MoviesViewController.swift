@@ -8,18 +8,30 @@
 import UIKit
 
 class MoviesViewController: UIViewController {
-    private let tableView = UITableView()
-    private let apiKey = "52846410a29857ff5ee4a418ab6ab056"
-    private var movies = [Movie]()
+    internal let tableView = UITableView()
+    internal let apiKey = "52846410a29857ff5ee4a418ab6ab056"
+    internal var movies:[Movie] = [] {
+        didSet {
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        DispatchQueue.global(qos: .background).async { [weak self] in
-            self?.loadMovies()
+        if type(of: self) == MoviesViewController.self {
+            DispatchQueue.global(qos: .background).async { [weak self] in
+                self?.loadMovies()
+            }
         }
-        
         tableView.rowHeight = UIScreen.main.bounds.width/0.67 + 40
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        tabBarController?.title = "Movies"
+        tabBarController?.navigationItem.searchController = nil
     }
     
     private func configureUI() {
@@ -64,7 +76,7 @@ class MoviesViewController: UIViewController {
         session.resume()
     }
     
-    private func loadImagesForMovies(_ movies: [Movie], completion: @escaping ([Movie]) -> Void) {
+    internal func loadImagesForMovies(_ movies: [Movie], completion: @escaping ([Movie]) -> Void) {
         let group = DispatchGroup()
         for movie in movies {
             group.enter()
