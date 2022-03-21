@@ -1,14 +1,15 @@
 //
-//  ViewController.swift
+//  PagingViewController.swift
 //  maroschupkina_1PW8
 //
-//  Created by Marina Roshchupkina on 18.03.2022.
+//  Created by Marina Roshchupkina on 21.03.2022.
 //
 
 import UIKit
 
-class MoviesViewController: UIViewController {
+class PagingViewController: UIViewController {
     internal let tableView = UITableView()
+    internal var segmentedControl = UISegmentedControl()
     internal let apiKey = "52846410a29857ff5ee4a418ab6ab056"
     internal var movies:[Movie] = [] {
         didSet {
@@ -21,16 +22,13 @@ class MoviesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        if type(of: self) == MoviesViewController.self {
-            DispatchQueue.global(qos: .background).async { [weak self] in
-                self?.loadMovies()
-            }
-        }
+        configureSegmentedControl()
+        loadMovies()
         tableView.rowHeight = UIScreen.main.bounds.width/0.67 + 40
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        tabBarController?.title = "Movies"
+        tabBarController?.title = "Paging"
         tabBarController?.navigationItem.searchController = nil
     }
     
@@ -48,8 +46,12 @@ class MoviesViewController: UIViewController {
         tableView.reloadData()
     }
     
-        private func loadMovies() {
-        guard let url = URL(string:"https://api.themoviedb.org/3/discover/movie?api_key=\(apiKey)&language=ru-RU") else {return assertionFailure("something wrong")}
+    private func loadMovies() {
+        var index = segmentedControl.selectedSegmentIndex
+        if index<0 {index = 1}
+        let page = segmentedControl.titleForSegment(at: index) ?? "1"
+        
+        guard let url = URL(string:"https://api.themoviedb.org/3/discover/movie?api_key=\(apiKey)&language=ru-RU&page=\(page)") else {return assertionFailure("something wrong")}
         let session = URLSession.shared.dataTask(with: URLRequest(url: url), completionHandler: {data, _, _ in
             guard
                 let data = data,
@@ -92,9 +94,31 @@ class MoviesViewController: UIViewController {
         
     }
     
+    
+    func configureSegmentedControl() {
+        segmentedControl = UISegmentedControl(items: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"])
+        segmentedControl.backgroundColor = .white
+        segmentedControl.selectedSegmentTintColor = .systemBlue
+        segmentedControl.tintColor = .lightGray
+        
+        view.addSubview(segmentedControl)
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            segmentedControl.heightAnchor.constraint(equalToConstant: 50),
+            segmentedControl.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            segmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            segmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+        segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged), for: .valueChanged)
+    }
+    
+    @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
+        self.loadMovies()
+    }
+    
 }
 
-extension MoviesViewController: UITableViewDataSource{
+extension PagingViewController : UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count;
         
@@ -105,4 +129,5 @@ extension MoviesViewController: UITableViewDataSource{
         cell.configure(movie: movies[indexPath.row])
         return cell
     }
+    
 }

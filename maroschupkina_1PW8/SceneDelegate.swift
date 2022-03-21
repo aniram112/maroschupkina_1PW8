@@ -21,7 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let tabBarController = UITabBarController()
         let viewControllers = [
             MoviesViewController(),
-            SearchViewController()
+            SearchViewController(),
+            PagingViewController()
         ]
         tabBarController.setViewControllers(viewControllers, animated: false)
         let nav = UINavigationController(rootViewController: tabBarController)
