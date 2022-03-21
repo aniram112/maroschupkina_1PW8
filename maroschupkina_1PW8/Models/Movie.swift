@@ -9,12 +9,14 @@ import UIKit
 
 class Movie {
     let title: String?
+    let path: String?
     let posterPath: String?
     var poster: UIImage? = nil
     
-    init(title: String, posterPath: String?) {
+    init(title: String, posterPath: String?, path: String) {
         self.title = title
         self.posterPath = posterPath
+        self.path = path
     }
     
     func loadPoster(completion: @escaping (UIImage?) -> Void) {

@@ -62,9 +62,12 @@ class PagingViewController: UIViewController {
             let movies: [Movie] = results.map { params -> Movie in
                 let title = params["title"] as! String
                 let imagePath = params["poster_path"] as? String
+                let id = params["id"] as? Int
+                let path = self.getPath(id: id!)
                 return Movie(
                     title: title,
-                    posterPath: imagePath
+                    posterPath: imagePath,
+                    path: path
                 )
             }
             
@@ -76,6 +79,10 @@ class PagingViewController: UIViewController {
             }
         })
         session.resume()
+    }
+    
+    internal func getPath(id: Int) -> String {
+             return "https://www.themoviedb.org/movie/\(id)"
     }
     
     internal func loadImagesForMovies(_ movies: [Movie], completion: @escaping ([Movie]) -> Void) {
@@ -117,6 +124,17 @@ class PagingViewController: UIViewController {
     }
     
 }
+
+extension PagingViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let url = URL(string: movies[indexPath.row].path!) {
+            let controller = MovieWebViewController()
+            controller.url = url
+            navigationController?.modalPresentationStyle = .fullScreen
+            navigationController!.pushViewController(controller, animated: true)
+        }
+    }
+ }
 
 extension PagingViewController : UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

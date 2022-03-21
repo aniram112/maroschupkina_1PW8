@@ -10,6 +10,7 @@
 		7E987EAC27E7CC5300FB6FD1 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E987EAB27E7CC5300FB6FD1 /* SearchViewController.swift */; };
 		7ED2342D27E88ED300BFE757 /* PagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED2342C27E88ED300BFE757 /* PagingViewController.swift */; };
 		7ED2342F27E89C1800BFE757 /* EndlessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED2342E27E89C1800BFE757 /* EndlessViewController.swift */; };
+		7ED2343127E8A3DD00BFE757 /* MovieWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED2343027E8A3DD00BFE757 /* MovieWebViewController.swift */; };
 		7EE1F2CB27E522D9007AA0E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE1F2CA27E522D9007AA0E0 /* AppDelegate.swift */; };
 		7EE1F2CD27E522D9007AA0E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE1F2CC27E522D9007AA0E0 /* SceneDelegate.swift */; };
 		7EE1F2CF27E522D9007AA0E0 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE1F2CE27E522D9007AA0E0 /* MoviesViewController.swift */; };
@@ -23,6 +24,7 @@
 		7E987EAB27E7CC5300FB6FD1 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		7ED2342C27E88ED300BFE757 /* PagingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingViewController.swift; sourceTree = "<group>"; };
 		7ED2342E27E89C1800BFE757 /* EndlessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndlessViewController.swift; sourceTree = "<group>"; };
+		7ED2343027E8A3DD00BFE757 /* MovieWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieWebViewController.swift; sourceTree = "<group>"; };
 		7EE1F2C727E522D8007AA0E0 /* maroschupkina_1PW8.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = maroschupkina_1PW8.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EE1F2CA27E522D9007AA0E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7EE1F2CC27E522D9007AA0E0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				7EE1F2CE27E522D9007AA0E0 /* MoviesViewController.swift */,
 				7ED2342C27E88ED300BFE757 /* PagingViewController.swift */,
 				7ED2342E27E89C1800BFE757 /* EndlessViewController.swift */,
+				7ED2343027E8A3DD00BFE757 /* MovieWebViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 				7EE1F2E227E52A8D007AA0E0 /* MovieView.swift in Sources */,
 				7ED2342F27E89C1800BFE757 /* EndlessViewController.swift in Sources */,
 				7EE1F2CB27E522D9007AA0E0 /* AppDelegate.swift in Sources */,
+				7ED2343127E8A3DD00BFE757 /* MovieWebViewController.swift in Sources */,
 				7EE1F2CD27E522D9007AA0E0 /* SceneDelegate.swift in Sources */,
 				7ED2342D27E88ED300BFE757 /* PagingViewController.swift in Sources */,
 				7EE1F2E427E52F92007AA0E0 /* Movie.swift in Sources */,

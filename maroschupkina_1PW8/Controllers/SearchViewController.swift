@@ -65,7 +65,13 @@ extension SearchViewController: UISearchResultsUpdating {
             let movies: [Movie] = results.map { params -> Movie in
                 let title = params["title"] as? String
                 let imagePath = params["poster_path"] as? String
-                return Movie(title: title ?? "", posterPath: imagePath)
+                let id = params["id"] as? Int
+                let path = self.getPath(id: id!)
+                return Movie(
+                    title: title ?? "",
+                    posterPath: imagePath,
+                    path: path
+                )
             }
             self.movies = movies
             self.loadImagesForMovies(movies) { movies in
